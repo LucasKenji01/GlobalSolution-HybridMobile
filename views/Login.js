@@ -14,7 +14,9 @@ import {
   Rubik_700Bold,
 } from "@expo-google-fonts/rubik";
 
-export default function Login() {
+
+
+export default function Login({navigation}) {
   const [fontLoaded] = useFonts({
     Rubik_400Regular,
     Rubik_500Medium,
@@ -37,7 +39,7 @@ export default function Login() {
         <TextInput style={styles.input} />
       </View>
       <View style={styles.containerBtn}>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Home')}>
             <Text style={styles.textoBtn}>Entrar</Text>
         </TouchableOpacity>
       </View>
@@ -49,7 +51,7 @@ export default function Login() {
       <View style={styles.containerCadastrese}>
         <Text style={styles.ntc}>Não tem cadastro?</Text>
         <TouchableOpacity style={styles.btn}>
-            <Text style={styles.textoBtn}>Cadastre-se</Text>
+            <Text style={styles.textoBtn} onPress={() => navigation.navigate('CadastroFuncionario')}>Cadastre-se</Text>
         </TouchableOpacity>
       </View>
     </View>
