@@ -7,7 +7,7 @@ import {
     Rubik_700Bold,
   } from "@expo-google-fonts/rubik";
 
-export default function Home(){
+export default function Home({navigation}){
 
     const [fontLoaded] = useFonts({
         Rubik_400Regular,
@@ -46,10 +46,10 @@ export default function Home(){
                 <Image style={styles.garfoEFaca} source={require('../assets/Garfo-e-faca.png')}/>
                 <View style={styles.linhaMenor}/>
             </View>
-            <TouchableOpacity style={styles.btnUsuario}>
+            <TouchableOpacity style={styles.btnUsuario} onPress={() => navigation.navigate('CadastroUsuario1')}>
                 <Text style={styles.txtUsuario}>Cadastrar Usuário</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btnDoacao}>
+            <TouchableOpacity style={styles.btnDoacao} onPress={() => navigation.navigate('Doacoes')}>
                 <Text style={styles.txtDoacao}>Registrar Doação</Text>
             </TouchableOpacity>
             <View style={styles.footer}>

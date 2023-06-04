@@ -4,8 +4,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './views/Login';
 import CadastroFuncionarioScreen from './views/CadastroFuncionario';
 import HomeScreen from './views/Home';
-import CadastroUsuarioScreen from './views/CadastroUsuario';
-import DoacaoScreen from './views/Doacao';
+import CadastroUsuarioScreen1 from './views/CadastroUsuario1';
+import CadastroUsuarioScreen2 from './views/CadastroUsuario2';
+import CadastroUsuarioScreen3 from './views/CadastroUsuario3';
+import DoacoesScreen from './views/Doacoes';
+import DoacaoFinanceiraScreen from './views/DoacaoFinanceira';
+import DoacaoAlimentosScreen from './views/DoacaoAlimentos';
 
 
 const Stack = createNativeStackNavigator();
@@ -29,12 +33,32 @@ export default function App() {
           headerTransparent: true,
           headerShown: false
         }}/>
-        <Stack.Screen name="CadastroUsuario" component={CadastroUsuarioScreen} options={{
+        <Stack.Screen name="CadastroUsuario1" component={CadastroUsuarioScreen1} options={{
           title: '',
           headerTransparent: true,
           headerShown: false
         }}/>
-        <Stack.Screen name="Doacao" component={DoacaoScreen} options={{
+        <Stack.Screen name="CadastroUsuario2" component={CadastroUsuarioScreen2} options={{
+          title: '',
+          headerTransparent: true,
+          headerShown: false
+        }}/>
+        <Stack.Screen name="CadastroUsuario3" component={CadastroUsuarioScreen3} options={{
+          title: '',
+          headerTransparent: true,
+          headerShown: false
+        }}/>
+        <Stack.Screen name="Doacoes" component={DoacoesScreen} options={{
+          title: '',
+          headerTransparent: true,
+          headerShown: false
+        }}/>
+        <Stack.Screen name="DoacaoFinanceira" component={DoacaoFinanceiraScreen} options={{
+          title: '',
+          headerTransparent: true,
+          headerShown: false
+        }}/>
+        <Stack.Screen name="DoacaoAlimentos" component={DoacaoAlimentosScreen} options={{
           title: '',
           headerTransparent: true,
           headerShown: false
