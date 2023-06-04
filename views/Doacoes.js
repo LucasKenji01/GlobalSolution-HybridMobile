@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native"
 import {
     useFonts,
     Rubik_400Regular,
@@ -24,13 +24,20 @@ export default function Doacoes({navigation}){
         <View style={styles.container}>
             <Text style={styles.titulo}>Doações</Text>
             <View style={styles.linha}/>
-            <Text style={styles.pergunta}>Qual é o tipo de doação?</Text>
-            <TouchableOpacity style={styles.btnFinanceira} onPress={() => navigation.navigate('DoacaoFinanceira')}>
-              <Text style={styles.txtFinanceiro}>Financeira</Text>
-            </TouchableOpacity>
-            <Text style={styles.txtOu}>ou</Text>
-            <TouchableOpacity style={styles.btnAlimentos} onPress={() => navigation.navigate('DoacaoAlimentos')}>
-              <Text style={styles.txtAlimentos}>Alimentos</Text>
+            <View style={styles.caixa}>
+                <Text style={styles.caixaTitulo}>Instituição RSF</Text>
+                <Text style={styles.banco}>Itaú</Text>
+                <Text style={styles.agencia}>Ag: 0000</Text>
+                <Text style={styles.conta}>CC: 11111-4</Text>
+                <Text style={styles.chave}>Chave Pix:</Text>
+                <Text style={styles.emailPix}>doacao@ruasemfome.com.br</Text>
+            </View>
+            <View style={styles.footer}>
+                <Text style={styles.txtFooter}>Juntos contra a fome!</Text>
+                <Image style={styles.coracao} source={require('../assets/Coracao.png')}/>
+            </View>
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.goBack()}>
+              <Text style={styles.txtBtn}>Voltar</Text>
             </TouchableOpacity>
         </View>
     )
@@ -56,40 +63,72 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 20,
   },
-  pergunta: {
+  caixa: {
+    width: 340,
+    height: 290,
+    borderWidth: 1,
+    marginTop: 30,
+    borderRadius: 6,
+  },
+  caixaTitulo: {
+    marginTop: 15,
+    marginLeft: 20,
+    fontSize: 28,
+    fontFamily: "Rubik_700Bold",
+  },
+  banco: {
+    marginTop: 25,
+    marginLeft: 20,
+    fontSize: 20,
+    fontFamily: "Rubik_500Medium",
+  },
+  agencia: {
+    marginTop: 25,
+    marginLeft: 20,
+    fontSize: 20,
+    fontFamily: "Rubik_500Medium",
+  },
+  conta: {
+    marginTop: 10,
+    marginLeft: 20,
+    fontSize: 20,
+    fontFamily: "Rubik_500Medium",
+  },
+  chave: {
+    marginTop: 25,
+    marginLeft: 20,
+    fontSize: 20,
+    fontFamily: "Rubik_500Medium",
+  },
+  emailPix: {
+    marginTop: 10,
+    marginLeft: 25,
+    fontSize: 20,
+    fontFamily: "Rubik_400Regular",
+  },
+  footer: {
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "center"
+  },
+  txtFooter: {
+    fontSize: 14,
+    fontFamily: 'Rubik_400Regular'
+  },
+  coracao: {
+    marginLeft: 5,
+  },
+  btn: {
+    width: 180,
+    height: 50,
+    backgroundColor: '#53CF48',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 50,
-    fontSize: 20,
-    fontFamily: 'Rubik_600SemiBold',
-  },
-  btnFinanceira: {
-    marginTop: 60,
-    width: 340,
-    height: 60,
-    backgroundColor: '#53CF48',
-    justifyContent: "center",
-    alignItems: "center",
+    marginLeft: 70,
     borderRadius: 6,
   },
-  txtFinanceiro: {
-    fontSize: 20,
-    fontFamily: 'Rubik_600SemiBold'
-  },
-  txtOu: {
-    fontSize: 16,
-    fontFamily: 'Rubik_400Regular',
-    marginTop: 40,
-    marginLeft: 150 
-  },
-  btnAlimentos: {
-    marginTop: 40,
-    width: 340,
-    height: 60,
-    backgroundColor: '#53CF48',
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 6,
-  },
-  txtAlimentos: {
+  txtBtn: {
     fontSize: 20,
     fontFamily: 'Rubik_600SemiBold'
   }

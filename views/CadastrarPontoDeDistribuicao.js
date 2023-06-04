@@ -7,7 +7,8 @@ import {
     Rubik_700Bold,
   } from "@expo-google-fonts/rubik";
 
-export default function CadastroUsuario2({navigation}){
+
+export default function CadastrarPontoDeDistribuicao({navigation}) {
 
     const [fontLoaded] = useFonts({
         Rubik_400Regular,
@@ -25,18 +26,15 @@ export default function CadastroUsuario2({navigation}){
             <TouchableOpacity style={styles.voltar} onPress={() => navigation.goBack()}>
                 <Image source={require('../assets/Voltar.png')}/>
             </TouchableOpacity>
-            <Text style={styles.titulo}>Cadastro Usuário</Text>
+            <Text style={styles.titulo}>Cadastrar Novo</Text>
+            <Text style={styles.titulo2}>Ponto de Distribuição</Text>
             <View style={styles.linha}/>
-            <View style={styles.forms}>
-                <Text style={styles.txtNome}>Idade</Text>
-                <TextInput style={styles.input}/>
-                <Text style={styles.txtGenero}>Altura</Text>
-                <TextInput style={styles.input}/>
-                <Text style={styles.txtSobrenome}>Peso</Text>
-                <TextInput style={styles.input}/>
-            </View>
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('CadastroUsuario3')}>
-                <Text style={styles.txtBtn}>Próximo</Text>
+            <Text style={styles.txt1}>Número do Ponto de Distribuição</Text>
+            <TextInput style={styles.input}/>
+            <Text style={styles.txt2}>Quantidade de vagas disponíveis</Text>
+            <TextInput style={styles.input}/>
+            <TouchableOpacity style={styles.btn}>
+                <Text style={styles.txtBtn}>Cadastrar</Text>
             </TouchableOpacity>
         </View>
     )
@@ -47,12 +45,19 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#F7F7F7",
         marginTop: 60,
-        marginLeft: 40,
-        marginRight: 40,
+        marginLeft: 20,
+        marginRight: 20,
     },
     titulo: {
         marginTop: 20,
-        fontSize: 36,
+        marginLeft: 40,
+        fontSize: 32,
+        fontFamily: "Rubik_700Bold",
+    },
+    titulo2: {
+        marginTop: 10,
+        marginLeft: 10,
+        fontSize: 32,
         fontFamily: "Rubik_700Bold",
     },
     linha: {
@@ -61,46 +66,41 @@ const styles = StyleSheet.create({
         backgroundColor: "#53CF48",
         borderRadius: 5,
         marginTop: 20,
+        marginLeft: 20,
     },
-    forms: {
-        marginTop: 65,
-        marginLeft: 15,
-    },
-    txtNome: {
+    txt1: {
         fontSize: 16,
-        fontFamily: "Rubik_400Regular",
+        fontFamily: 'Rubik_400Regular',
+        marginTop: 70,
+        marginLeft: 20
     },
-    txtSobrenome: {
+    txt2: {
         fontSize: 16,
-        fontFamily: "Rubik_400Regular",
-        marginTop: 30,
-    },
-    txtGenero: {
-        fontSize: 16,
-        fontFamily: "Rubik_400Regular",
-        marginTop: 30
+        fontFamily: 'Rubik_400Regular',
+        marginTop: 50,
+        marginLeft: 20
     },
     input: {
-        marginTop: 5,
-        width: 300,
+        width: 320,
         height: 40,
-        backgroundColor: "#FFFFFF",
         borderWidth: 1,
+        marginTop: 5,
+        marginLeft: 20,
         borderRadius: 4,
     },
     btn: {
-        marginTop: 40,
-        backgroundColor: '#53CF48',
+        marginTop: 80,
+        marginLeft: 100,
         width: 180,
         height: 50,
+        backgroundColor: '#53CF48',
         justifyContent: "center",
         alignItems: "center",
-        marginLeft: 70,
         borderRadius: 6,
+
     },
     txtBtn: {
         fontSize: 20,
-        fontFamily: 'Rubik_600SemiBold',
+        fontFamily: 'Rubik_600SemiBold'
     }
-
 })

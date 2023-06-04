@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native"
 import {
     useFonts,
     Rubik_400Regular,
@@ -23,6 +23,9 @@ export default function CadastroFuncionario({navigation}){
 
     return(
         <View style={styles.container}>
+            <TouchableOpacity style={styles.voltar} onPress={() => navigation.goBack()}>
+                <Image source={require('../assets/Voltar.png')}/>
+            </TouchableOpacity>
             <Text style={styles.titulo}>Cadastro</Text>
             <View style={styles.linha}/>
             <View style={styles.forms}>

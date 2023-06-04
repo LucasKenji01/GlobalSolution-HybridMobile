@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native"
 import {
     useFonts,
     Rubik_400Regular,
@@ -22,15 +22,31 @@ export default function CadastroUsuario3({navigation}){
 
     return(
         <View style={styles.container}>
+            <TouchableOpacity style={styles.voltar} onPress={() => navigation.goBack()}>
+                <Image source={require('../assets/Voltar.png')}/>
+            </TouchableOpacity>
             <Text style={styles.titulo}>Cadastro Usuário</Text>
             <View style={styles.linha}/>
-            <View style={styles.forms}>
-                <Text style={styles.txtNome}>Estado</Text>
-                <TextInput style={styles.input}/>
-                <Text style={styles.txtSobrenome}>Cidade</Text>
-                <TextInput style={styles.input}/>
-                <Text style={styles.txtGenero}>Bairro</Text>
-                <TextInput style={styles.input}/>
+            <Text style={styles.txt}>Verifique se os dados estão corretos</Text>
+            <View style={styles.caixa}>
+                <Text style={styles.txtNumDestino}>Número CD Destino</Text>
+                <Text style={styles.value}>003</Text>
+                
+                <Text style={styles.txtNome}>Nome</Text>
+                <Text style={styles.value}>jorge Rodrigo</Text>
+                
+                <Text style={styles.txtSobrenome}>Sobrenome</Text>
+                <Text style={styles.value}>dos Santos</Text>
+
+                <Text style={styles.txtIdade}>Idade</Text>
+                <Text style={styles.value}>30</Text>
+
+                <Text style={styles.txtAltura}>Altura</Text>
+                <Text style={styles.value}>1,85</Text>
+
+                <Text style={styles.txtPeso}>Peso</Text>
+                <Text style={styles.value}>80</Text>
+                
             </View>
             <TouchableOpacity style={styles.btn}>
                 <Text style={styles.txtBtn}>Cadastrar</Text>
@@ -44,46 +60,83 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#F7F7F7",
         marginTop: 60,
-        marginLeft: 40,
-        marginRight: 40,
+        marginLeft: 20,
+        marginRight: 20,
     },
     titulo: {
+        marginLeft: 20,
         marginTop: 20,
         fontSize: 36,
         fontFamily: "Rubik_700Bold",
     },
     linha: {
+        marginLeft: 20,
         width: 330,
         height: 4,
         backgroundColor: "#53CF48",
         borderRadius: 5,
         marginTop: 20,
     },
-    forms: {
-        marginTop: 65,
+    txt: {
+        fontSize: 20,
+        fontFamily: 'Rubik_600SemiBold',
+        marginTop: 40,
+        marginLeft: 10,
+    },
+    caixa: {
+        marginTop: 15,
+        marginLeft: 10,
+        width: 350,
+        height: 460,
+        borderWidth: 1,
+
+    },
+    txtNumDestino: {
+        marginTop: 15,
         marginLeft: 15,
+        fontSize: 20,
+        fontFamily: "Rubik_600SemiBold",
     },
     txtNome: {
-        fontSize: 16,
-        fontFamily: "Rubik_400Regular",
-    },
-    txtSobrenome: {
-        fontSize: 16,
-        fontFamily: "Rubik_400Regular",
+        marginTop: 15,
+        marginLeft: 15,
+        fontSize: 20,
+        fontFamily: "Rubik_600SemiBold",
         marginTop: 30,
     },
-    txtGenero: {
-        fontSize: 16,
-        fontFamily: "Rubik_400Regular",
+    txtSobrenome: {
+        marginTop: 15,
+        marginLeft: 15,
+        fontSize: 20,
+        fontFamily: "Rubik_600SemiBold",
+        marginTop: 30,
+    },
+    txtIdade: {
+        marginTop: 15,
+        marginLeft: 15,
+        fontSize: 20,
+        fontFamily: "Rubik_600SemiBold",
         marginTop: 30
     },
-    input: {
-        marginTop: 5,
-        width: 300,
-        height: 40,
-        backgroundColor: "#FFFFFF",
-        borderWidth: 1,
-        borderRadius: 4,
+    txtAltura: {
+        marginTop: 15,
+        marginLeft: 15,
+        fontSize: 20,
+        fontFamily: "Rubik_600SemiBold",
+        marginTop: 30
+    },
+    txtPeso: {
+        marginTop: 15,
+        marginLeft: 15,
+        fontSize: 20,
+        fontFamily: "Rubik_600SemiBold",
+        marginTop: 30
+    },
+    value: {
+        marginTop: 2,
+        marginLeft: 25,
+        fontSize: 18,
+        fontFamily: 'Rubik_400Regular'
     },
     btn: {
         marginTop: 40,
@@ -92,7 +145,7 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: "center",
         alignItems: "center",
-        marginLeft: 70,
+        marginLeft: 90,
         borderRadius: 6,
     },
     txtBtn: {

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native"
 import {
     useFonts,
     Rubik_400Regular,
@@ -22,14 +22,19 @@ export default function CadastroUsuario1({navigation}){
 
     return(
         <View style={styles.container}>
+            <TouchableOpacity style={styles.voltar} onPress={() => navigation.goBack()}>
+                <Image source={require('../assets/Voltar.png')}/>
+            </TouchableOpacity>
             <Text style={styles.titulo}>Cadastro Usuário</Text>
             <View style={styles.linha}/>
             <View style={styles.forms}>
+                <Text style={styles.txtNumDestino}>Número CD Destino</Text>
+                <TextInput style={styles.input}/>
                 <Text style={styles.txtNome}>Nome</Text>
                 <TextInput style={styles.input}/>
                 <Text style={styles.txtSobrenome}>Sobrenome</Text>
                 <TextInput style={styles.input}/>
-                <Text style={styles.txtGenero}>Gênero</Text>
+                <Text style={styles.txtNumDocumento}>Número do Documento</Text>
                 <TextInput style={styles.input}/>
             </View>
             <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('CadastroUsuario2')}>
@@ -63,16 +68,21 @@ const styles = StyleSheet.create({
         marginTop: 65,
         marginLeft: 15,
     },
+    txtNumDestino: {
+        fontSize: 16,
+        fontFamily: "Rubik_400Regular",
+    },
     txtNome: {
         fontSize: 16,
         fontFamily: "Rubik_400Regular",
+        marginTop: 30,
     },
     txtSobrenome: {
         fontSize: 16,
         fontFamily: "Rubik_400Regular",
         marginTop: 30,
     },
-    txtGenero: {
+    txtNumDocumento: {
         fontSize: 16,
         fontFamily: "Rubik_400Regular",
         marginTop: 30
