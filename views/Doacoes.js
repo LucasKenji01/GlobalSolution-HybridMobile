@@ -1,46 +1,54 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import {
-    useFonts,
+  useFonts,
+  Rubik_400Regular,
+  Rubik_500Medium,
+  Rubik_600SemiBold,
+  Rubik_700Bold,
+} from "@expo-google-fonts/rubik";
+
+export default function Doacoes({ navigation }) {
+  const [fontLoaded] = useFonts({
     Rubik_400Regular,
     Rubik_500Medium,
     Rubik_600SemiBold,
     Rubik_700Bold,
-  } from "@expo-google-fonts/rubik";
+  });
 
-export default function Doacoes({navigation}){
+  if (!fontLoaded) {
+    return null;
+  }
 
-    const [fontLoaded] = useFonts({
-        Rubik_400Regular,
-        Rubik_500Medium,
-        Rubik_600SemiBold,
-        Rubik_700Bold,
-      });
-    
-      if (!fontLoaded) {
-        return null;
-      }
-
-    return(
-        <View style={styles.container}>
-            <Text style={styles.titulo}>Doações</Text>
-            <View style={styles.linha}/>
-            <View style={styles.caixa}>
-                <Text style={styles.caixaTitulo}>Instituição RSF</Text>
-                <Text style={styles.banco}>Itaú</Text>
-                <Text style={styles.agencia}>Ag: 0000</Text>
-                <Text style={styles.conta}>CC: 11111-4</Text>
-                <Text style={styles.chave}>Chave Pix:</Text>
-                <Text style={styles.emailPix}>doacao@ruasemfome.com.br</Text>
-            </View>
-            <View style={styles.footer}>
-                <Text style={styles.txtFooter}>Juntos contra a fome!</Text>
-                <Image style={styles.coracao} source={require('../assets/Coracao.png')}/>
-            </View>
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.goBack()}>
-              <Text style={styles.txtBtn}>Voltar</Text>
-            </TouchableOpacity>
-        </View>
-    )
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.voltar}
+        onPress={() => navigation.goBack()}
+      >
+        <Image source={require("../assets/Voltar.png")} />
+      </TouchableOpacity>
+      <Text style={styles.titulo}>Doações</Text>
+      <View style={styles.linha} />
+      <View style={styles.caixa}>
+        <Text style={styles.caixaTitulo}>Instituição RSF</Text>
+        <Text style={styles.banco}>Itaú</Text>
+        <Text style={styles.agencia}>Ag: 0000</Text>
+        <Text style={styles.conta}>CC: 11111-4</Text>
+        <Text style={styles.chave}>Chave Pix:</Text>
+        <Text style={styles.emailPix}>doacao@ruasemfome.com.br</Text>
+      </View>
+      <View style={styles.footer}>
+        <Text style={styles.txtFooter}>Juntos contra a fome!</Text>
+        <Image
+          style={styles.coracao}
+          source={require("../assets/Coracao.png")}
+        />
+      </View>
+      <TouchableOpacity style={styles.btn} onPress={() => navigation.goBack()}>
+        <Text style={styles.txtBtn}>Voltar</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -109,11 +117,11 @@ const styles = StyleSheet.create({
   footer: {
     marginTop: 20,
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   txtFooter: {
     fontSize: 14,
-    fontFamily: 'Rubik_400Regular'
+    fontFamily: "Rubik_400Regular",
   },
   coracao: {
     marginLeft: 5,
@@ -121,7 +129,7 @@ const styles = StyleSheet.create({
   btn: {
     width: 180,
     height: 50,
-    backgroundColor: '#53CF48',
+    backgroundColor: "#53CF48",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 50,
@@ -130,6 +138,6 @@ const styles = StyleSheet.create({
   },
   txtBtn: {
     fontSize: 20,
-    fontFamily: 'Rubik_600SemiBold'
-  }
-})
+    fontFamily: "Rubik_600SemiBold",
+  },
+});

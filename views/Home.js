@@ -40,13 +40,15 @@ export default function Home({navigation}){
             <TouchableOpacity style={styles.btnDoacoes} onPress={() => navigation.navigate('Doacoes')}>
                 <Text style={styles.txtDoacoes}>Doações</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.btnGerarReceitasDoDia} onPress={() => navigation.navigate('GerarReceitasDoDia')}>
+                <Text style={styles.txtGerarReceitasDoDia}>Gerar receitas do dia</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.btnCadastrarReceitasDoDia} onPress={() => navigation.navigate('CadastrarReceitasDoDia')}>
+                <Text style={styles.txtCadastrarReceitasDoDia}>Cadastrar receitas do dia</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.btnSair} onPress={() => navigation.popToTop()}>
                 <Text style={styles.txtSair}>Sair</Text>
             </TouchableOpacity>
-
-
-
-
             <View style={styles.footer}>
                 <Text style={styles.txtFooter}>Juntos contra a fome!</Text>
                 <Image style={styles.coracao} source={require('../assets/Coracao.png')}/>
@@ -64,12 +66,12 @@ const styles = StyleSheet.create({
         marginRight: 40,
     },
     logo: {
-        marginLeft: 110,
-        width: 110,
-        height: 110,
+        marginLeft: 120,
+        width: 90,
+        height: 90,
     },
     btnExibirPontos: {
-        marginTop: 30,
+        marginTop: 20,
         width: 340,
         height: 60,
         backgroundColor: '#53CF48',
@@ -82,7 +84,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Rubik_600SemiBold'
     },
     btnCadastrarPonto: {
-        marginTop: 20,
+        marginTop: 15,
         width: 340,
         height: 60,
         backgroundColor: '#53CF48',
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Rubik_600SemiBold'
     },
     btnCadastrarUsuario: {
-        marginTop: 20,
+        marginTop: 15,
         width: 340,
         height: 60,
         backgroundColor: '#53CF48',
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Rubik_600SemiBold'
     },
     btnPesquisarUsuario: {
-        marginTop: 20,
+        marginTop: 15,
         width: 340,
         height: 60,
         backgroundColor: '#53CF48',
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Rubik_600SemiBold'
     },
     btnDoacoes: {
-        marginTop: 20,
+        marginTop: 15,
         width: 340,
         height: 60,
         backgroundColor: '#53CF48',
@@ -133,8 +135,34 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: 'Rubik_600SemiBold'
     },
+    btnGerarReceitasDoDia: {
+        marginTop: 15,
+        width: 340,
+        height: 60,
+        backgroundColor: '#53CF48',
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 6,
+    },
+    txtGerarReceitasDoDia: {
+        fontSize: 20,
+        fontFamily: 'Rubik_600SemiBold'
+    },
+    btnCadastrarReceitasDoDia: {
+        marginTop: 15,
+        width: 340,
+        height: 60,
+        backgroundColor: '#53CF48',
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 6,
+    },
+    txtCadastrarReceitasDoDia: {
+        fontSize: 20,
+        fontFamily: 'Rubik_600SemiBold'
+    },
     btnSair: {
-        marginTop: 20,
+        marginTop: 15,
         width: 340,
         height: 60,
         backgroundColor: '#53CF48',
@@ -147,7 +175,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Rubik_600SemiBold'
     },
     footer: {
-        marginTop: 70,
+        marginTop: 30,
         flexDirection: "row",
         justifyContent: "center"
     },

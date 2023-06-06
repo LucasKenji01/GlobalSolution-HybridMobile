@@ -11,6 +11,8 @@ import DoacoesScreen from './views/Doacoes';
 import ExibirPontosDeDistribuicaoScreen from './views/ExibirPontosDeDistribuicao';
 import CadastrarPontoDeDistribuicaoScreen from './views/CadastrarPontoDeDistribuicao';
 import PesquisarUsuarioScreen from './views/PesquisarUsuario';
+import GerarReceitasDoDiaScreen from './views/GerarReceitasDoDia';
+import CadastrarReceitasDoDiaScreen from './views/CadastrarReceitasDoDia';
 
 
 
@@ -66,6 +68,16 @@ export default function App() {
           headerShown: false
         }}/>
         <Stack.Screen name="Doacoes" component={DoacoesScreen} options={{
+          title: '',
+          headerTransparent: true,
+          headerShown: false
+        }}/>
+        <Stack.Screen name="GerarReceitasDoDia" component={GerarReceitasDoDiaScreen} options={{
+          title: '',
+          headerTransparent: true,
+          headerShown: false
+        }}/>
+        <Stack.Screen name="CadastrarReceitasDoDia" component={CadastrarReceitasDoDiaScreen} options={{
           title: '',
           headerTransparent: true,
           headerShown: false

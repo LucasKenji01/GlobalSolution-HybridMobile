@@ -29,10 +29,6 @@ export default function CadastroFuncionario({navigation}){
             <Text style={styles.titulo}>Cadastro</Text>
             <View style={styles.linha}/>
             <View style={styles.forms}>
-                <Text style={styles.textoNome}>Nome</Text>
-                <TextInput style={styles.input}/>
-                <Text style={styles.textoSobrenome}>Sobrenome</Text>
-                <TextInput style={styles.input}/>
                 <Text style={styles.textoEmail}>Email</Text>
                 <TextInput style={styles.input}/>
                 <Text style={styles.textoSenha}>Senha</Text>
@@ -70,15 +66,6 @@ const styles = StyleSheet.create({
     forms: {
         marginTop: 65,
         marginLeft: 15,
-    },
-    textoNome: {
-        fontSize: 16,
-        fontFamily: "Rubik_400Regular",
-    },
-    textoSobrenome: {
-        fontSize: 16,
-        fontFamily: "Rubik_400Regular",
-        marginTop: 30,
     },
     textoEmail: {
         fontSize: 16,
