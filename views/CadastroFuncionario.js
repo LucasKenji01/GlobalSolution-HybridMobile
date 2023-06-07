@@ -6,7 +6,7 @@ import {
     Rubik_600SemiBold,
     Rubik_700Bold,
   } from "@expo-google-fonts/rubik";
-
+import React, { useState } from "react";
 
 export default function CadastroFuncionario({navigation}){
 
@@ -17,9 +17,44 @@ export default function CadastroFuncionario({navigation}){
         Rubik_700Bold,
       });
     
+      const [email, setEmail] = useState("");
+      const [senha, setSenha] = useState("");
+
       if (!fontLoaded) {
         return null;
       }
+
+      
+
+      const cadastrarLogin = () => {
+        const login ={
+            descricao_email: email,
+            descricao_senha: senha
+        };
+
+        fetch("http://192.168.0.7:8080/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(login)
+        })
+        .then(response => response.json())
+        .then(data => {
+            navigation.goBack();
+
+        setTimeout(() => {
+          alert("Cadastro realizado com sucesso!");
+        }, 100);
+        console.log("Resposta da API:", data);
+      })
+        .catch(error => {
+            console.log("Erro na requisição:", error)
+        })
+      }
+
+
+
 
     return(
         <View style={styles.container}>
@@ -30,12 +65,12 @@ export default function CadastroFuncionario({navigation}){
             <View style={styles.linha}/>
             <View style={styles.forms}>
                 <Text style={styles.textoEmail}>Email</Text>
-                <TextInput style={styles.input}/>
+                <TextInput style={styles.input} value={email} onChangeText={text => setEmail(text)}/>
                 <Text style={styles.textoSenha}>Senha</Text>
-                <TextInput style={styles.input}/>
+                <TextInput style={styles.input} value={senha} onChangeText={text => setSenha(text)}/>
             </View>
             <View style={styles.containerBtn}>
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.goBack()}>
+                <TouchableOpacity style={styles.btn} onPress={cadastrarLogin}>
                     <Text style={styles.textoBtn}>Cadastrar</Text>
                 </TouchableOpacity>
             </View>

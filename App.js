@@ -4,9 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './views/Login';
 import CadastroFuncionarioScreen from './views/CadastroFuncionario';
 import HomeScreen from './views/Home';
-import CadastroUsuarioScreen1 from './views/CadastroUsuario1';
-import CadastroUsuarioScreen2 from './views/CadastroUsuario2';
-import CadastroUsuarioScreen3 from './views/CadastroUsuario3';
+import CadastroUsuarioScreen from './views/CadastroUsuario';
 import DoacoesScreen from './views/Doacoes';
 import ExibirPontosDeDistribuicaoScreen from './views/ExibirPontosDeDistribuicao';
 import CadastrarPontoDeDistribuicaoScreen from './views/CadastrarPontoDeDistribuicao';
@@ -47,17 +45,7 @@ export default function App() {
           headerTransparent: true,
           headerShown: false
         }}/>
-        <Stack.Screen name="CadastroUsuario1" component={CadastroUsuarioScreen1} options={{
-          title: '',
-          headerTransparent: true,
-          headerShown: false
-        }}/>
-        <Stack.Screen name="CadastroUsuario2" component={CadastroUsuarioScreen2} options={{
-          title: '',
-          headerTransparent: true,
-          headerShown: false
-        }}/>
-        <Stack.Screen name="CadastroUsuario3" component={CadastroUsuarioScreen3} options={{
+        <Stack.Screen name="CadastroUsuario" component={CadastroUsuarioScreen} options={{
           title: '',
           headerTransparent: true,
           headerShown: false

@@ -31,7 +31,7 @@ export default function Home({navigation}){
             <TouchableOpacity style={styles.btnCadastrarPonto} onPress={() => navigation.navigate('CadastrarPontoDeDistribuicao')}>
                 <Text style={styles.txtCadastrarPonto}>Cadastrar Ponto de Distribuição</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btnCadastrarUsuario} onPress={() => navigation.navigate('CadastroUsuario1')}>
+            <TouchableOpacity style={styles.btnCadastrarUsuario} onPress={() => navigation.navigate('CadastroUsuario')}>
                 <Text style={styles.txtCadastrarUsuario}>Cadastrar Usuário</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnPesquisarUsuario} onPress={() => navigation.navigate('PesquisarUsuario')}>

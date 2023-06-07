@@ -31,7 +31,8 @@ export default function GerarReceitasDoDia({ navigation }) {
     return null;
   }
 
-  const OPENAI_API_KEY = "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";
+  //https://platform.openai.com/account/api-keys
+  const OPENAI_API_KEY = "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";
 
   function sendQuestion() {
     const sQuestion = "Me dê uma receita com os seguintes alimentos: " + inputQuestion;

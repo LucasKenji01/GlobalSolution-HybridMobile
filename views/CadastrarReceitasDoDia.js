@@ -13,6 +13,7 @@ import {
   Rubik_600SemiBold,
   Rubik_700Bold,
 } from "@expo-google-fonts/rubik";
+import React, { useState } from "react";
 
 export default function CadastrarReceitasDoDia({navigation}) {
   const [fontLoaded] = useFonts({
@@ -22,9 +23,39 @@ export default function CadastrarReceitasDoDia({navigation}) {
     Rubik_700Bold,
   });
 
+  const [nomeReceita, setNomeReceita] = useState("")
+  const [modoPreparo, setModoPreparo] = useState("")
+
   if (!fontLoaded) {
     return null;
   }
+
+  const cadastrarReceita = () => {
+    const cadastro = {
+      nome_receita: nomeReceita,
+      descricao_preparo: modoPreparo
+    };
+
+    fetch("http://192.168.0.7:8080/api/receita", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(cadastro)
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert("Receita cadastrada com sucesso!")
+      setNomeReceita("")
+      setModoPreparo("")
+      console.log("Resposta da API:", data)
+    })
+    .catch(error => {
+      console.log("Erro na requisição:", error)
+    })
+  }
+
+
 
   return (
     <View style={styles.container}>
@@ -37,10 +68,10 @@ export default function CadastrarReceitasDoDia({navigation}) {
       <Text style={styles.titulo}>Cadastrar receitas do dia</Text>
       <View style={styles.linha} />
       <Text style={styles.txtNomeDaReceita}>Nome da receita</Text>
-      <TextInput style={styles.inputNomeDaReceita}/>
+      <TextInput style={styles.inputNomeDaReceita} value={nomeReceita} onChangeText={e => setNomeReceita(e)}/>
       <Text style={styles.txtModoDePreparo}>Modo de preparo</Text>
-      <TextInput style={styles.inputModoDePreparo}/>
-      <TouchableOpacity style={styles.btn}>
+      <TextInput style={styles.inputModoDePreparo} value={modoPreparo} onChangeText={e => setModoPreparo(e)}/>
+      <TouchableOpacity style={styles.btn} onPress={cadastrarReceita}>
         <Text style={styles.txtBtn}>Cadastrar</Text>
       </TouchableOpacity>
     </View>

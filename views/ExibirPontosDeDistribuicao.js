@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Animated,
+  ScrollView
 } from "react-native";
 import {
   useFonts,
@@ -36,6 +36,7 @@ export default function ExibirPontosDeDistribuicao({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.titulo}>Pontos de Distribuição</Text>
       <View style={styles.linha} />
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.lista}>
         <View style={styles.card}>
             <Text style={styles.subtitulo} for="cardPressionado">• Ponto 1</Text>
@@ -57,7 +58,16 @@ export default function ExibirPontosDeDistribuicao({ navigation }) {
             <Text style={styles.subtitulo} for="cardPressionado">• Ponto 5</Text>
             <Text style={styles.txt}>Vagas disponíveis: 30</Text>
         </View>
+        <View style={styles.card}>
+            <Text style={styles.subtitulo} for="cardPressionado">• Ponto 6</Text>
+            <Text style={styles.txt}>Vagas disponíveis: 30</Text>
+        </View>
+        <View style={styles.card}>
+            <Text style={styles.subtitulo} for="cardPressionado">• Ponto 7</Text>
+            <Text style={styles.txt}>Vagas disponíveis: 30</Text>
+        </View>
       </View>
+      </ScrollView>
       <TouchableOpacity
         style={styles.btnVoltar}
         onPress={() => navigation.goBack()}
@@ -89,11 +99,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
   },
+  scrollViewContent: {
+    flexGrow: 1,
+  },
   lista: {
     marginTop: 30,
     marginLeft: 20,
     width: 340,
-    height: 520,
+    minHeight: 10,
     borderWidth: 1,
     borderRadius: 6,
   },
@@ -119,7 +132,7 @@ const styles = StyleSheet.create({
     marginLeft: 50,
   },
   btnVoltar: {
-    marginTop: 40,
+    marginTop: 10,
     marginLeft: 95,
     width: 180,
     height: 50,
