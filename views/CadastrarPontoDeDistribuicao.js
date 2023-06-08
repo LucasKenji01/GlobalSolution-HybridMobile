@@ -35,7 +35,7 @@ export default function CadastrarPontoDeDistribuicao({ navigation }) {
     return null;
   }
 
-  const cadastrarPonto = () => {
+  const cadastrarPonto = async () => {
     const ponto = {
       nome_centro_distribuicao: nome,
       numero_vagas: quantidadeVagas,
@@ -49,25 +49,28 @@ export default function CadastrarPontoDeDistribuicao({ navigation }) {
       body: JSON.stringify(ponto),
     };
 
-    fetch("http://192.168.0.7:8080/api/centrodistribuicao", requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Resposta da API:", data);
-        cadastrarEndereco(data.id_centro_distribuicao);
-      })
-      .catch((error) => {
-        console.error("Erro na requisição:", error);
-      });
+    try {
+      const response = await fetch("http://192.168.0.7:8080/api/centrodistribuicao", requestOptions)
+      
+      if(response.status != 201) {
+        Alert.alert("Erro", "Nao foi possivel fazer o cadastro tente novamente");
+      } else {
+        const responseBody = await response.json(); 
+        const id = responseBody["id"]
+        cadastrarEndereco(id)
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error)
+    }
   };
 
-  const cadastrarEndereco = (idCentroDistribuicao) => {
+  const cadastrarEndereco = async (idCentroDistribuicao) => {
     const endereco = {
       nome_logradouro: logradouro,
       numero_logradouro: numero,
       numero_cep: cep,
       nome_cidade: cidade,
       nome_estado: estado,
-      id_centro_distribuicao: idCentroDistribuicao,
     };
 
     const requestOptions = {
@@ -78,15 +81,35 @@ export default function CadastrarPontoDeDistribuicao({ navigation }) {
       body: JSON.stringify(endereco),
     };
 
-    fetch("http://192.168.0.7:8080/api/endereco", requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        alert("Cadastro realizado com sucesso!")
-        console.log("Resposta da API:", data);
-      })
-      .catch((error) => {
-        console.log("Erro na requisição:", error);
-      });
+    try {
+      const response = await fetch("http://192.168.0.7:8080/api/endereco", requestOptions)
+      
+      if(response.status != 201) {
+        Alert.alert("Erro", "Nao foi possivel fazer o cadastro tente novamente");
+      } else {
+        const responseBody = await response.json(); 
+        
+        endereco["id"] = responseBody["id"]
+
+        const responseFromAddingCentro = await fetch(`http://192.168.0.7:8080/api/centrodistribuicao/${idCentroDistribuicao}/endereco`, requestOptions)
+
+        if(response.status != 201) {
+          Alert.alert("Erro", "Nao foi possivel fazer o cadastro tente novamente");
+        } else {
+          setCep("")
+          setNome("")
+          setCidade("")
+          setLogradouro("")
+          setNumero("")
+          setQuantidadeVagas("")
+          setEstado("")
+          alert("Cadastrado com sucesso!")
+        }
+      }
+
+    } catch (error) {
+      console.error("Erro na requisição:", error)
+    }
   };
 
   return (

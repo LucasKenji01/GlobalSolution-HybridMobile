@@ -25,19 +25,29 @@ export default function Login({ navigation }) {
 
     try {
       const response = await fetch("http://192.168.0.7:8080/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
+        method: "GET"
+      })
 
-      if (response.status === 201) {
-        navigation.push("Home");
-        setEmail("")
-        setSenha("")
+      if(response.status != 200) {
+        Alert.alert("Erro", "Não foi possivel fazer a requisicao");
       } else {
-        Alert.alert("Erro", "Usuário ou senha incorretos");
+        const responseBody = await response.json();
+        let found = false
+        responseBody["_embedded"]["entityModelList"].forEach(e => {
+          const emailFromResponse = e["descricao_email"]
+          const senhaFromResponse = e["descricao_senha"]
+          
+          if(emailFromResponse == email && senhaFromResponse == senha) {
+            console.log("Logado")
+            navigation.push("Home");
+            found = true
+          }
+        })
+
+        if(!found) {
+          Alert.alert("Erro", "Usuário ou senha incorretos");
+        }
+
       }
     } catch (error) {
       console.error("Erro na requisição:", error);
@@ -51,7 +61,7 @@ export default function Login({ navigation }) {
       <View style={styles.linha} />
       <View style={styles.forms}>
         <Text style={styles.textoEmail}>Email</Text>
-        <TextInput style={styles.input} value={email} onChangeText={setEmail} />
+        <TextInput style={styles.input} value={email} onChangeText={setEmail} type='email'/>
         <Text style={styles.textoSenha}>Senha</Text>
         <TextInput style={styles.input} value={senha} onChangeText={setSenha} secureTextEntry={true} />
       </View>
@@ -109,6 +119,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   input: {
+    paddingLeft: 10,
+    paddingRight: 10,
     marginTop: 5,
     width: 300,
     height: 40,

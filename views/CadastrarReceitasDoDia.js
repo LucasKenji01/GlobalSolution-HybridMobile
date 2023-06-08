@@ -30,29 +30,28 @@ export default function CadastrarReceitasDoDia({navigation}) {
     return null;
   }
 
-  const cadastrarReceita = () => {
+  const cadastrarReceita = async () => {
     const cadastro = {
       nome_receita: nomeReceita,
       descricao_preparo: modoPreparo
     };
 
-    fetch("http://192.168.0.7:8080/api/receita", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(cadastro)
-    })
-    .then(response => response.json())
-    .then(data => {
-      alert("Receita cadastrada com sucesso!")
-      setNomeReceita("")
-      setModoPreparo("")
-      console.log("Resposta da API:", data)
-    })
-    .catch(error => {
-      console.log("Erro na requisição:", error)
-    })
+    try {
+      const response = await fetch("http://192.168.0.7:8080/api/receita", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(cadastro)
+      })
+      if(response.status != 201) {
+        alert("Nao foi possivel fazer o cadastro da receita, verifique os dados e tente novamente")
+      } else {
+        alert("Receita cadastrada com sucesso")
+      }
+    } catch (error) {
+      alert("Erro na requisição: " + error)
+    }
   }
 
 

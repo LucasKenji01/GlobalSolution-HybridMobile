@@ -9,7 +9,8 @@ export default function CadastroUsuario({ navigation }) {
     Rubik_700Bold,
   });
 
-  const [numDocumento, setNumDocumento] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [rg, setRg] = useState("");
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");
   const [altura, setAltura] = useState("");
@@ -21,12 +22,12 @@ export default function CadastroUsuario({ navigation }) {
 
   const cadastrarUsuario = () => {
     const usuario = {
-      numero_rg: numDocumento,
-      numero_cpf: numDocumento,
-      nome_pessoa: nome,
-      valor_altura: altura,
-      valor_peso: peso,
-      valor_idade: idade,
+      numero_rg: rg,
+      numero_cpf: cpf,
+      nomePessoa: nome,
+      valorAltura: altura,
+      valorPeso: peso,
+      valorIdade: idade,
     };
 
     const requestOptions = {
@@ -47,13 +48,33 @@ export default function CadastroUsuario({ navigation }) {
         return Promise.all(promises);
       })
       .then((data) => {
-        alert("Cadastro realizado com sucesso!")
-        setNumDocumento("")
-        setNome("")
-        setIdade("")
-        setAltura("")
-        setPeso("")
-        console.log("Respostas da API:", data);
+        console.log(data)
+        const pessoaId = data[1]["id"]
+        const documento = {
+          "id": data[0]["id"],
+          "numero_cpf": data[0]["numero_cpf"],
+          "numero_rg": data[0]["numero_rg"]
+        }
+
+        fetch(`http://192.168.0.7:8080/api/pessoa/${pessoaId}/documento`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(documento),
+        }).then(response => {
+          if(response.status != 201) {
+            alert("Nao foi possivel realizar o cadastro, tente novamente")
+          } else {
+            setRg("")
+            setCpf("")
+            setNome("")
+            setIdade("")
+            setAltura("")
+            setPeso("")
+            alert("Cadastro realizado com sucesso!")
+          }
+        })
       })
       .catch((error) => {
         console.log("Erro na requisição:", error);
@@ -68,8 +89,10 @@ export default function CadastroUsuario({ navigation }) {
       <Text style={styles.titulo}>Cadastro Usuário</Text>
       <View style={styles.linha} />
       <View style={styles.forms}>
-        <Text style={styles.txtNumDocumento}>Número do Documento</Text>
-        <TextInput style={styles.input} value={numDocumento} onChangeText={(e) => setNumDocumento(e)} />
+        <Text style={styles.txtCpf}>CPF</Text>
+        <TextInput style={styles.input} value={cpf} onChangeText={(e) => setCpf(e)} />
+        <Text style={styles.txtRg}>RG</Text>
+        <TextInput style={styles.input} value={rg} onChangeText={(e) => setRg(e)} />
         <Text style={styles.txtNome}>Nome</Text>
         <TextInput style={styles.input} value={nome} onChangeText={(e) => setNome(e)} />
         <Text style={styles.txtIdade}>Idade</Text>
@@ -115,25 +138,30 @@ const styles = StyleSheet.create({
         fontFamily: "Rubik_400Regular",
         marginTop: 30,
     },
-    txtNumDocumento: {
+    txtCpf: {
         fontSize: 16,
         fontFamily: "Rubik_400Regular",
-        marginTop: 30
+        marginTop: 20
+    },
+    txtRg: {
+        fontSize: 16,
+        fontFamily: "Rubik_400Regular",
+        marginTop: 20
     },
     txtIdade: {
         fontSize: 16,
         fontFamily: "Rubik_400Regular",
-        marginTop: 30
+        marginTop: 20
     },
     txtAltura: {
         fontSize: 16,
         fontFamily: "Rubik_400Regular",
-        marginTop: 30
+        marginTop: 20
     },
     txtPeso: {
         fontSize: 16,
         fontFamily: "Rubik_400Regular",
-        marginTop: 30
+        marginTop: 20
     },
     input: {
         marginTop: 5,

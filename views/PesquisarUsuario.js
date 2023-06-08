@@ -31,62 +31,18 @@ export default function PesquisarUsuario({ navigation }) {
     return null;
   }
 
-  const pesquisar = () => {
-    fetch("http://192.168.0.7:8080/api/documento/1")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Usuário não encontrado");
+  const pesquisar = async () => {
+    const response = await fetch("http://192.168.0.7:8080/api/pessoa?size=200")
+    const responseBody = await response.json()
+
+    responseBody["_embedded"]["entityModelList"].forEach(e => {
+      if(e["documento"] != null) {
+        if(e["documento"]["numero_rg"] == numeroDocumento) {
+          console.log(e)
+          setDocumentoEncontrado(e)
         }
-        return response.json();
-      })
-      .then((data) => {
-        setDocumentoEncontrado(data);
-        if (data && data.id_pessoa) {
-          // Faz a requisição para obter as informações da pessoa
-          fetch("http://192.168.0.7:8080/api/pessoa/1")
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Informações da pessoa não encontradas");
-              }
-              return response.json();
-            })
-            .then((pessoaData) => {
-              setDocumentoEncontrado((prevState) => ({
-                ...prevState,
-                nome: pessoaData.nome,
-              }));
-              if (data && data.id_centro_distribuicao) {
-                // Faz a requisição para obter as informações do centro de distribuição
-                fetch(
-                  "http://192.168.0.7:8080/api/centrodistribuicao/1"
-                )
-                  .then((response) => {
-                    if (!response.ok) {
-                      throw new Error(
-                        "Informações do centro de distribuição não encontradas"
-                      );
-                    }
-                    return response.json();
-                  })
-                  .then((centroData) => {
-                    setDocumentoEncontrado((prevState) => ({
-                      ...prevState,
-                      nome_centro_distribuicao: centroData.nome,
-                    }));
-                  })
-                  .catch((error) => {
-                    Alert.alert("Erro", error.message);
-                  });
-              }
-            })
-            .catch((error) => {
-              Alert.alert("Erro", error.message);
-            });
-        }
-      })
-      .catch((error) => {
-        Alert.alert("Erro", error.message);
-      });
+      }
+    })
   };
 
   return (
@@ -99,26 +55,19 @@ export default function PesquisarUsuario({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.titulo}>Pesquisar Usuário</Text>
       <View style={styles.linha} />
-      <Text style={styles.txt}>Número do Documento</Text>
+      <Text style={styles.txt}>Número do Rg</Text>
       <TextInput
         style={styles.input}
         value={numeroDocumento}
         onChangeText={(e) => setNumeroDocumento(e)}
       />
       <View style={styles.caixa}>
-        {documentoEncontrado ? (
-          <>
-            <Text style={styles.txtNumDocumento}>
-              {documentoEncontrado.numero_documento}
-            </Text>
-            <Text style={styles.nome}>{documentoEncontrado.nome_pessoa}</Text>
-            {documentoEncontrado.nome_centro_distribuicao && (
-              <Text style={styles.nomeDistribuicao}>
-                Centro de distribuição: {documentoEncontrado.nome_centro_distribuicao}
-              </Text>
-            )}
-          </>
-        ) : null}
+        {documentoEncontrado ? <>
+          <Text style={styles.resultadoPesquisa}>{"Nome:" + documentoEncontrado.nomePessoa}</Text>
+          <Text style={styles.resultadoPesquisa}>{"Altura:" + documentoEncontrado.valorAltura}</Text>
+          <Text style={styles.resultadoPesquisa}>{"Idade:" + documentoEncontrado.valorIdade}</Text>
+          <Text style={styles.resultadoPesquisa}>{"Peso:" + documentoEncontrado.valorPeso}</Text>
+        </> : null}
       </View>
       <TouchableOpacity style={styles.btn} onPress={pesquisar}>
         <Text style={styles.txtBtn}>Pesquisar</Text>
@@ -152,6 +101,12 @@ const styles = StyleSheet.create({
   txt: {
     marginTop: 80,
     marginLeft: 20,
+    fontSize: 16,
+    fontFamily: "Rubik_500Medium",
+  },
+  resultadoPesquisa: {
+    marginTop: 15,
+    marginLeft: 15,
     fontSize: 16,
     fontFamily: "Rubik_500Medium",
   },
